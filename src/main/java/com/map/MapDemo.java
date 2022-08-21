@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import net.bytebuddy.agent.builder.AgentBuilder.InitializationStrategy.SelfInjection.Lazy;
+
 public class MapDemo {
 	public static void main(String[] args) {
 		Configuration cfg=new Configuration();
@@ -59,15 +61,10 @@ public class MapDemo {
         
          Question q=(Question)s.get(Question.class, 1212);
          
+        System.out.println(q.getQuestionId());
         System.out.println(q.getQuestion());
-        
-        for (Answer a : q.getAnswers()) {
-        	System.out.println(a.getAnswer());
-			
-		}
-        
-        
-        tx.commit();
+  
+        System.out.println(q.getAnswers().size());
         
         // fetching........
  //       Question newQ = (Question) s.get(Question.class, 242);
